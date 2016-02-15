@@ -1,0 +1,32 @@
+{
+  "name": "reactive-property",
+  "version": "0.0.1",
+  "description": "A small library for getter-setter functions that react to changes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curran/reactiveProperty.git"
+  },
+  "keywords": [
+    "reactive",
+    "flux",
+    "redux",
+    "graph",
+    "frp",
+    "functional",
+    "reactive",
+    "programming"
+  ],
+  "author": "Curran Kelleher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/curran/reactiveProperty/issues"
+  },
+  "homepage": "https://github.com/curran/reactiveProperty#readme",
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  }
+}
