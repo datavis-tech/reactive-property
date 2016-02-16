@@ -12,45 +12,44 @@ var Graph = require("./graph.js");
 var debounce = require("./debounce.js");
 
 var graph = new Graph();
-var nodeIdCounter = 0;
+
+var ReactiveNode = (function (){
+  var idCounter = 0;
+  return function (){
+    return idCounter++;
+  }
+}());
+
 var changedNodes = {};
-var nodes = {};
+var evaluateNode = {};
 
 function digest(){
   var sourceNodes = Object.keys(changedNodes).map(parseInt);
-  var ids = graph.topologicalSort(sourceNodes);
-  ids.forEach(function (id){
-    nodes[id].evaluate();
+  graph.topologicalSort(sourceNodes).forEach(function (id){
+    var fn = evaluateNode[id];
+    if(fn) fn();
   });
 }
 
 var queueDigest = debounce(digest);
 
-function nodeChanged(node){
-  changedNodes[node.id] = true;
+function nodeChanged(id){
+  changedNodes[id] = true;
   queueDigest();
 }
 
-function ReactiveNode(evaluate){
-  var node = {
-    id: nodeIdCounter++,
-    evaluate: evaluate || function (){}
-  };
-  nodes[node.id] = node;
-  return node;
-}
 
 function ReactiveProperty(value){
-  var node = ReactiveNode();
+  var id = ReactiveNode();
   var reactiveProperty = function(newValue){
     if(!arguments.length){
       return value;
     } else {
       value = newValue;
-      nodeChanged(node);
+      nodeChanged(id);
     }
   };
-  reactiveProperty.node = node;
+  reactiveProperty.id = id;
   return reactiveProperty;
 }
 
@@ -66,22 +65,24 @@ function ReactiveFunction(){
 
   var value;
 
-  var node = ReactiveNode(function (){
-    var args = dependencies.map(function (d){
-      return d();
-    });
-    value = callback.apply(null, args);
-  });
-
-  dependencies.forEach(function (d){
-    graph.addEdge(d.node.id, node.id);
-  });
+  var id = ReactiveNode();
 
   var reactiveFunction = function (){
     return value;
   };
 
-  reactiveFunction.node = node;
+  dependencies.forEach(function (d){
+    graph.addEdge(d.id, id);
+  });
+
+  evaluateNode[id] = function (){
+    var args = dependencies.map(function (d){
+      return d();
+    });
+    value = callback.apply(null, args);
+  };
+
+  reactiveFunction.id = id;
 
   return reactiveFunction;
 }
