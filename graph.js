@@ -25,17 +25,22 @@ function Graph(){
 
   // Depth First Search algorithm, inspired by
   // Cormen et al. "Introduction to Algorithms" 3rd Ed. p. 604
+  // This variant excludes the source nodes from the result.
   function depthFirstSearch(sourceNodes){
 
     var visited = {};
     var nodes = [];
 
-    sourceNodes.forEach(function DFSVisit(node){
+    function DFSVisit(node){
       if(!visited[node]){
         visited[node] = true;
         adjacent(node).forEach(DFSVisit);
         nodes.push(node);
       }
+    }
+
+    sourceNodes.forEach(function (node){
+      adjacent(node).forEach(DFSVisit);
     });
 
     return nodes;

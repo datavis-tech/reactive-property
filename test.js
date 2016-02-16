@@ -13,7 +13,7 @@ var debounce = require("./debounce.js");
 
 var graph = new Graph();
 
-var ReactiveNode = (function (){
+var node = (function (){
   var idCounter = 0;
   return function (){
     return idCounter++;
@@ -21,14 +21,14 @@ var ReactiveNode = (function (){
 }());
 
 var changedNodes = {};
-var evaluateNode = {};
+var evaluate = {};
 
 function digest(){
   var sourceNodes = Object.keys(changedNodes).map(parseInt);
   graph.topologicalSort(sourceNodes).forEach(function (id){
-    var fn = evaluateNode[id];
-    if(fn) fn();
+    evaluate[id]();
   });
+  changedNodes = {};
 }
 
 var queueDigest = debounce(digest);
@@ -38,51 +38,40 @@ function nodeChanged(id){
   queueDigest();
 }
 
-
 function ReactiveProperty(value){
-  var id = ReactiveNode();
-  var reactiveProperty = function(newValue){
+  function reactiveProperty(newValue){
     if(!arguments.length){
       return value;
     } else {
       value = newValue;
-      nodeChanged(id);
+      nodeChanged(reactiveProperty.id);
     }
   };
-  reactiveProperty.id = id;
+  reactiveProperty.id = node();
   return reactiveProperty;
+}
+
+function get(reactiveProperty){
+  return reactiveProperty();
 }
 
 // ReactiveFunction(dependencies... , callback)
 function ReactiveFunction(){
 
-  // Parse arguments.
-  var dependencies = [];
-  for(var i = 0; i < arguments.length - 1; i++){
-    dependencies.push(arguments[i]);
-  }
-  var callback = arguments[arguments.length - 1];
+  var dependencies = Array.apply(null, arguments);
+  var callback = dependencies.pop();
 
   var value;
+  var reactiveFunction = function (){ return value; };
+  reactiveFunction.id = node();
 
-  var id = ReactiveNode();
-
-  var reactiveFunction = function (){
-    return value;
-  };
-
-  dependencies.forEach(function (d){
-    graph.addEdge(d.id, id);
+  dependencies.forEach(function (dependency){
+    graph.addEdge(dependency.id, reactiveFunction.id);
   });
 
-  evaluateNode[id] = function (){
-    var args = dependencies.map(function (d){
-      return d();
-    });
-    value = callback.apply(null, args);
+  evaluate[reactiveFunction.id] = function (){
+    value = callback.apply(null, dependencies.map(get));
   };
-
-  reactiveFunction.id = id;
 
   return reactiveFunction;
 }
