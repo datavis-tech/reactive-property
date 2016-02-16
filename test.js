@@ -1,12 +1,4 @@
 var assert = require("assert");
-describe("ReactiveProperty", function() {
-  describe("#indexOf()", function () {
-    it("should return -1 when the value is not present", function () {
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
-    });
-  });
-});
 
 var Graph = require("./graph.js");
 var debounce = require("./debounce.js");
@@ -39,15 +31,28 @@ function nodeChanged(id){
 }
 
 function ReactiveProperty(value){
+  var listeners;
   function reactiveProperty(newValue){
     if(!arguments.length){
       return value;
     } else {
       value = newValue;
-      nodeChanged(reactiveProperty.id);
+
+      // TODO test
+      //if(listeners){
+      //  listeners.forEach(function (listener){
+      //    listener(value);
+      //  });
+      //}
     }
   };
-  reactiveProperty.id = node();
+  reactiveProperty.on = function (listener){
+    (listeners = listeners || []).push(listener);
+    listener(value);
+  };
+  //TODO test this
+  //reactiveProperty.off = function (callback){
+  //};
   return reactiveProperty;
 }
 
@@ -66,6 +71,17 @@ function ReactiveFunction(){
   reactiveFunction.id = node();
 
   dependencies.forEach(function (dependency){
+
+    if(!dependency.id){
+      dependency.id = node();
+    }
+
+    if(dependency.on){
+      dependency.on(function(){
+        nodeChanged(dependency.id);
+      });
+    }
+
     graph.addEdge(dependency.id, reactiveFunction.id);
   });
 
@@ -89,27 +105,42 @@ function ReactiveFunction(){
 //console.log(graph.topologicalSort([1]));
 
 
-var a = ReactiveProperty(5);
-console.log(a());
-a(6);
-console.log(a());
+describe("ReactiveProperty", function() {
+  it("should work", function () {
+    var a = ReactiveProperty(5);
+    assert.equal(a(), 5);
 
-var b = ReactiveProperty(10);
+    a(6);
+    assert.equal(a(), 6);
 
-var c = ReactiveFunction(a, b, function (a, b){
-  return a + b;
+    var b = ReactiveProperty(10);
+
+    var c = ReactiveFunction(a, b, function (a, b){
+      assert.equal(a, 6);
+      assert.equal(b, 10);
+      return a + b;
+    });
+
+    digest();
+    assert.equal(c(), 16);
+
+    var d = ReactiveFunction(a, c, function (a, c){
+      assert.equal(a, 6);
+      assert.equal(c, 16);
+      return a + c;
+    });
+
+    digest();
+    assert.equal(d(), 22);
+
+    //a(1);
+    //digest();
+    //assert.equal(c(), 11);
+    //assert.equal(d(), 4);
+    //console.log(d());
+    //
+    //
+    //console.log(d());
+    //
+  });
 });
-
-var d = ReactiveFunction(a, c, function (a, c){
-  return a + c;
-});
-
-digest();
-
-console.log(c());
-console.log(d());
-
-a(0);
-digest();
-
-console.log(d());
