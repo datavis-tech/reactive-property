@@ -165,5 +165,17 @@ describe("ReactiveProperty", function() {
       assert.equal(numInvocations1, 4);
       assert.equal(numInvocations2, 3);
     });
+    
+    it("Should throw an error if constructor invoked with too many arguments.", function (){
+      assert.throws(function (){
+        ReactiveProperty(1, 2);
+      });
+    });
+
+    it("Should throw an error if setter invoked with too many arguments.", function (){
+      assert.throws(function (){
+        ReactiveProperty()(1, 2);
+      });
+    });
   });
 });

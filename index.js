@@ -6,12 +6,19 @@
 }(this, function () { "use strict";
 
   // This function generates a getter-setter with change listeners.
-  function ReactiveProperty(value){
+  return function ReactiveProperty(value){
+
+    if(arguments.length > 1){
+      throw new Error("ReactiveProperty(value) accepts only a single argument, the initial value.");
+    }
 
     var listeners;
 
     function property(newValue){
-      if(arguments.length > 0){
+      if(arguments.length > 1){
+        throw new Error("reactiveProperty(newValue) accepts only a single argument, the new value.");
+      }
+      if(arguments.length === 1){
         value = newValue;
         if(listeners){
           for(var i = 0; i < listeners.length; i++){
@@ -50,7 +57,4 @@
 
     return property;
   }
-
-  return ReactiveProperty;
-
 }));
