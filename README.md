@@ -1,14 +1,14 @@
 # ReactiveProperty
 
-This tiny library abstracts the getter-setter pattern described in [Towards Reusable Charts - Mike Bostock (2012)](https://bost.ocks.org/mike/chart/).
+This [tiny](https://github.com/curran/reactiveProperty/blob/master/index.js) library abstracts the getter-setter pattern described in [Towards Reusable Charts (by Mike Bostock, 2012)](https://bost.ocks.org/mike/chart/).
 
-It also adds the ability to react to changes.
+It also adds the ability to react to changes in state.
 
 ## Quick Start
 
 Install the library by running the command
 
-`npm install reactive-model`
+`npm install reactive-property`
 
 Require it in your code like this:
 
@@ -51,9 +51,9 @@ var listener = a.on(function(){
 a.off(listener);
 ```
 
-## Detailed Example Code
+## Example Code
 
-Here's some example code from the tests that demonstrates the functionality of this library:
+Here's some example code from the tests that demonstrates the functionality of this library.
 
 ```javascript
 var ReactiveProperty = require("reactive-property");
@@ -84,62 +84,63 @@ describe("Getter-setters", function() {
 In addition to setting and getting values, you can also listen for changes using the `on` function. 
 
 ```javascript
-describe("Reacting to changes", function (){
+it("Should react to changes.", function (done) {
+  var a = ReactiveProperty();
+  a.on(function (){
+    assert.equal(a(), 10);
+    done();
+  }); 
+  a(10);
+});
 
-  it("Should react to changes.", function (done) {
-    var a = ReactiveProperty();
-    a.on(function (){
-      assert.equal(a(), 10);
-      done();
-    }); 
-    a(10);
-  });
+it("Should react to the default value.", function (done) {
+  var a = ReactiveProperty(5);
+  a.on(function (){
+    assert.equal(a(), 5);
+    done();
+  }); 
+});
 
-  it("Should react to the default value.", function (done) {
-    var a = ReactiveProperty(5);
-    a.on(function (){
-      assert.equal(a(), 5);
-      done();
-    }); 
-  });
+it("Should not react to no value.", function () {
+  var a = ReactiveProperty();
+  var numInvocations = 0;
+  a.on(function (){ numInvocations++; }); 
+  assert.equal(numInvocations, 0);
+});
 
-  it("Should not react to no value.", function () {
-    var a = ReactiveProperty();
-    var numInvocations = 0;
-    a.on(function (){ numInvocations++; }); 
-    assert.equal(numInvocations, 0);
-  });
+it("Should react synchronously.", function () {
+  var a = ReactiveProperty();
+  var numInvocations = 0;
+  a.on(function (){ numInvocations++; }); 
+  assert.equal(numInvocations, 0);
+  a(10);
+  assert.equal(numInvocations, 1);
+  a(15);
+  assert.equal(numInvocations, 2);
+});
 
-  it("Should react synchronously.", function () {
-    var a = ReactiveProperty();
-    var numInvocations = 0;
-    a.on(function (){ numInvocations++; }); 
-    assert.equal(numInvocations, 0);
-    a(10);
-    assert.equal(numInvocations, 1);
-    a(15);
-    assert.equal(numInvocations, 2);
-  });
+it("Should pass the value to the listener as an argument.", function (done) {
+  var a = ReactiveProperty();
+  a.on(function (value){
+    assert.equal(value, 10);
+    done();
+  }); 
+  a(10);
+});
+```
 
-  it("Should stop reacting to changes.", function () {
-    var a = ReactiveProperty();
-    var numInvocations = 0;
-    var listener = a.on(function (){ numInvocations++; }); 
-    a(10);
-    assert.equal(numInvocations, 1);
-    a.off(listener);
-    a(15);
-    assert.equal(numInvocations, 1);
-  });
+Here's how you can unregister a listener.
 
-  it("Should pass the value to the listener as an argument.", function (done) {
-    var a = ReactiveProperty();
-    a.on(function (value){
-      assert.equal(value, 10);
-      done();
-    }); 
-    a(10);
-  });
+```javascript
+it("Should stop reacting to changes.", function () {
+  var a = ReactiveProperty();
+  var numInvocations = 0;
+  var listener = a.on(function (){ numInvocations++; }); 
+  a(10);
+  assert.equal(numInvocations, 1);
+  a.off(listener);
+  a(15);
+  assert.equal(numInvocations, 1);
 });
 ```
 
