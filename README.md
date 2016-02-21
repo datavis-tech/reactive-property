@@ -1,6 +1,8 @@
 # ReactiveProperty
 
-This abstracts the getter-setter pattern described in [Towards Reusable Charts - Mike Bostock (2012)](https://bost.ocks.org/mike/chart/), and also adds the ability to listen for changes on properties.
+This tiny library abstracts the getter-setter pattern described in [Towards Reusable Charts - Mike Bostock (2012)](https://bost.ocks.org/mike/chart/).
+
+It also adds the ability to react to changes.
 
 ## Quick Start
 
