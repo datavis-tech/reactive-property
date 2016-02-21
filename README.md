@@ -2,6 +2,46 @@
 
 This abstracts the getter-setter pattern described in [Towards Reusable Charts - Mike Bostock (2012)](https://bost.ocks.org/mike/chart/), and also adds the ability to listen for changes on properties.
 
+## Quick Start
+
+Install the library by running the command
+
+`npm install reactive-model`
+
+Require it in your code like this:
+
+```javascript
+var ReactiveProperty = require("reactive-property");
+```
+
+Create your first property.
+
+```javascript
+var a = ReactiveProperty();
+```
+
+Set its value.
+
+```javascript
+a(5);
+```
+
+Get its value.
+
+```javascript
+a();
+```
+
+Listen for changes.
+
+```javascript
+a.on(function(){
+  console.log("The value of 'a' changed!");
+});
+```
+
+## Detailed Example Code
+
 Here's some example code from the tests that demonstrates the functionality of this library:
 
 ```javascript
