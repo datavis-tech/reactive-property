@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/curran/reactiveProperty.git"
+    "url": "git+https://github.com/curran/reactive-property.git"
   },
   "keywords": [
     "reactive",
@@ -23,9 +23,9 @@
   "author": "Curran Kelleher",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/curran/reactiveProperty/issues"
+    "url": "https://github.com/curran/reactive-property/issues"
   },
-  "homepage": "https://github.com/curran/reactiveProperty#readme",
+  "homepage": "https://github.com/curran/reactive-property#readme",
   "devDependencies": {
     "mocha": "^2.4.5"
   }
