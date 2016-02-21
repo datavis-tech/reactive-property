@@ -1,9 +1,9 @@
 // UMD boilerplate (from Rollup)
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
+  typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory() :
+  typeof define === "function" && define.amd ? define(factory) :
   (global.ReactiveProperty = factory());
-}(this, function () { 'use strict';
+}(this, function () { "use strict";
 
   // This function generates a getter-setter with change listeners.
   function ReactiveProperty(value){
