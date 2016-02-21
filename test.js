@@ -133,5 +133,37 @@ describe("ReactiveProperty", function() {
         ReactiveProperty().off(function (){});
       });
     });
+
+    it("Should stop reacting to changes in one listener while another continues reacting.", function () {
+      var a = ReactiveProperty();
+
+      var numInvocations1 = 0;
+      var listener1 = a.on(function (){ numInvocations1++; }); 
+
+      var numInvocations2 = 0;
+      var listener2 = a.on(function (){ numInvocations2++; }); 
+
+      a(10);
+      assert.equal(numInvocations1, 1);
+      assert.equal(numInvocations2, 1);
+
+      a.off(listener1);
+      a(15);
+      assert.equal(numInvocations1, 1);
+      assert.equal(numInvocations2, 2);
+
+      a.on(listener1);
+      assert.equal(numInvocations1, 2);
+      assert.equal(numInvocations2, 2);
+
+      a(20);
+      assert.equal(numInvocations1, 3);
+      assert.equal(numInvocations2, 3);
+
+      a.off(listener2);
+      a(25);
+      assert.equal(numInvocations1, 4);
+      assert.equal(numInvocations2, 3);
+    });
   });
 });

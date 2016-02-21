@@ -40,10 +40,10 @@
       return listener;
     };
 
-    property.off = function (listener){
+    property.off = function (listenerToRemove){
       if(listeners){
         listeners = listeners.filter(function (listener){
-          listener !== listener;
+          return listener !== listenerToRemove;
         });
       }
     };
