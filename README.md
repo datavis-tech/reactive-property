@@ -8,11 +8,11 @@ It also adds the ability to react to changes in state.
 
 ## Quick Start
 
-Install the library by running the command
+Install the library by running this command.
 
 `npm install reactive-property`
 
-Require it in your code like this:
+Require it in your code like this.
 
 ```javascript
 var ReactiveProperty = require("reactive-property");
