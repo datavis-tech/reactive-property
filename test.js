@@ -1,4 +1,4 @@
-// Unit tests for the ReactiveProperty library.
+// Unit tests for reactive-property.
 var assert = require("assert");
 
 // If using from the NPM package, this line would be
