@@ -144,4 +144,8 @@ it("Should stop reacting to changes.", function () {
 });
 ```
 
-I hope you enjoy this library! Feel free to open GitHub issues if you have any questions, comments or suggestions.
+## Future Plans
+
+This library is "complete" and fully functional as-is. Aside from bugs or edge cases that come up, no new features will be added to this library. This library is designed to be the foundation of larger systems, and additional functionality should arise by composing this library with other code.
+
+I hope you enjoy and benefit from this project! Feel free to open GitHub issues if you have any questions, comments or suggestions.
