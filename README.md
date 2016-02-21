@@ -8,7 +8,7 @@ It also adds the ability to react to changes in state.
 
 Install the library by running the command
 
-`npm install reactive-model`
+`npm install reactive-property`
 
 Require it in your code like this:
 
