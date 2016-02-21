@@ -1,10 +1,8 @@
 # ReactiveProperty
 
-A simple library that generates getter-setters.
+This abstracts the getter-setter pattern described in [Towards Reusable Charts - Mike Bostock (2012)](https://bost.ocks.org/mike/chart/), and also adds the ability to listen for changes on properties.
 
-This abstracts the getter-setter pattern described in [Towards Reusable Charts - Mike Bostock (2012)](https://bost.ocks.org/mike/chart/);
-
-Here are the tests that demonstrate the functionality of this library:
+Here's some example code from the tests that demonstrates the functionality of this library:
 
 ```javascript
 var ReactiveProperty = require("reactive-property");
