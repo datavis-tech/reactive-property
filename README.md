@@ -40,6 +40,15 @@ a.on(function(){
 });
 ```
 
+Cancel your subscription.
+
+```javascript
+var listener = a.on(function(){
+  console.log("The value of 'a' changed!");
+});
+a.off(listener);
+```
+
 ## Detailed Example Code
 
 Here's some example code from the tests that demonstrates the functionality of this library:
