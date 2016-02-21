@@ -4,7 +4,7 @@ This [tiny](https://github.com/curran/reactiveProperty/blob/master/index.js) lib
 
 It also adds the ability to react to changes in state.
 
-[![Build Status](https://travis-ci.org/curran/reactiveProperty.svg?branch=master)](https://travis-ci.org/curran/reactiveProperty)
+[![Build Status](https://travis-ci.org/curran/reactive-property.svg?branch=master)](https://travis-ci.org/curran/reactive-property)
 
 ## Quick Start
 
