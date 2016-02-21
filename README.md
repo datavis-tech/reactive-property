@@ -55,7 +55,7 @@ a.off(listener);
 
 ## Example Code
 
-Here's some example code from the tests that demonstrates the functionality of this library.
+Here's some example code from the [tests](https://github.com/curran/reactiveProperty/blob/master/test.js) that demonstrates the functionality of this library.
 
 ```javascript
 var ReactiveProperty = require("reactive-property");
