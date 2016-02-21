@@ -39,17 +39,15 @@ a();
 Listen for changes.
 
 ```javascript
-a.on(function(){
-  console.log("The value of 'a' changed!");
+a.on(function(value){
+  console.log("The value of 'a' changed to " + value);
 });
 ```
 
 Cancel your subscription.
 
 ```javascript
-var listener = a.on(function(){
-  console.log("The value of 'a' changed!");
-});
+var listener = a.on(function(){ console.log("'a' changed!"); });
 a.off(listener);
 ```
 
