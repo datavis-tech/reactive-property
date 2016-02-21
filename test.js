@@ -5,7 +5,6 @@ describe("ReactiveProperty", function() {
 
   it("Should construct a property.", function () {
     var a = ReactiveProperty();
-    console.log(a);
     assert.equal(typeof(a), "function");
     assert.equal(typeof(a()), "undefined");
   });
