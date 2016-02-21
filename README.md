@@ -144,7 +144,11 @@ it("Should stop reacting to changes.", function () {
 });
 ```
 
-## Future Plans
+## Background
+
+After many attempts at building "frameworks" for data visualization ([ModelJS](https://github.com/curran/model), Chiasm), I have learned that abstractions come at a cost proportional to their surface area. Much to my dismay, I found that when I wanted to apply Chiasm to a particular project, the abstractions stood in the way of customization, and I found myself starting again from raw D3 examples to get projects done. After a project grows in complexity, the most common need is to *listen for changes in state*.
+
+This library is my attempt to create a "micro-framework" that fits will with data visualizations, particularly using D3, and provides the ability to listen for changes in state. It is intentionally minimal, and *no other features* are provided. This is to minimize the surface area of this library, and make it appealing for others to adopt as a utility in D3-based projects.
 
 This library is "complete" and fully functional as-is. Aside from bugs or edge cases that come up, no new features will be added to this library. This library is designed to be the foundation of larger systems, and additional functionality should arise by composing this library with other code.
 
