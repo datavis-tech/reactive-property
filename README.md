@@ -60,6 +60,14 @@ my.y = ReactiveProperty(10, my);
 my.x(50).y(100);
 ```
 
+You can access the context object as `this` in listeners.
+
+```javasript
+my.x.on(function(value){
+  console.log(this === my); // Prints "true"
+});
+```
+
 ## Example Code
 
 Here's some example code from the [tests](https://github.com/curran/reactiveProperty/blob/master/test.js) that demonstrates the functionality of this library.
