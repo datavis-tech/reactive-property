@@ -75,7 +75,7 @@ my.x(50).y(100);
 
 You can access the context object as `this` in listeners.
 
-```javasript
+```javascript
 my.x.on(function(value){
   console.log(this === my); // Prints "true"
 });
