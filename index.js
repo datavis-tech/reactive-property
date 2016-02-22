@@ -6,16 +6,16 @@
 
   // Error messages for exceptions thrown.
   var errors = {
-    tooManyArgsConstructor: "ReactiveProperty(value) accepts only a single argument, the initial value.",
+    tooManyArgsConstructor: "ReactiveProperty(value, [context]) accepts up to two arguments, the initial value and (optionally) the context object.",
     tooManyArgsSetter: "reactiveProperty(newValue) accepts only a single argument, the new value.",
     onNonFunction: "ReactiveProperty.on(listener) only accepts functions, not values.",
     onArgs: "ReactiveProperty.on(listener) accepts exactly one argument, the listener function."
   };
 
   // This function generates a getter-setter with change listeners.
-  return function ReactiveProperty(value){
+  return function ReactiveProperty(value, context){
     var listeners, i;
-    if(arguments.length > 1) { throw Error(errors.tooManyArgsConstructor); }
+    if(arguments.length > 2) { throw Error(errors.tooManyArgsConstructor); }
 
     function property(newValue){
       if(arguments.length > 1) { throw Error(errors.tooManyArgsSetter); }
@@ -24,16 +24,32 @@
         if(listeners){
           for(i = 0; i < listeners.length; i++){ listeners[i](value); }
         }
+        return context;
       } else {
         return value;
       }
     }
 
     property.on = function (listener){
-      if(typeof listener !== "function"){ throw Error(errors.onNonFunction); }
-      if(arguments.length > 1 || arguments.length === 0){ throw Error(errors.onArgs); }
-      (listeners ? listeners : (listeners = [])).push(listener);
-      if(typeof(value) !== "undefined"){ listener(value); }
+
+      if(typeof listener !== "function"){
+        throw Error(errors.onNonFunction);
+      }
+
+      if(arguments.length > 1 || arguments.length === 0){
+        throw Error(errors.onArgs);
+      }
+
+      if(!listeners){
+        listeners = [];
+      }
+
+      listeners.push(listener);
+
+      if(typeof(value) !== "undefined"){
+        listener.call(context, value);
+      }
+
       return listener;
     };
 

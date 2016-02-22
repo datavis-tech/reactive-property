@@ -51,6 +51,15 @@ var listener = a.on(function(){ console.log("'a' changed!"); });
 a.off(listener);
 ```
 
+Set up method chaining for setters using a context object.
+
+```javascript
+var my = {};
+my.x = ReactiveProperty(5, my);
+my.y = ReactiveProperty(10, my);
+my.x(50).y(100);
+```
+
 ## Example Code
 
 Here's some example code from the [tests](https://github.com/curran/reactiveProperty/blob/master/test.js) that demonstrates the functionality of this library.
@@ -141,6 +150,40 @@ it("Should stop reacting to changes.", function () {
   a.off(listener);
   a(15);
   assert.equal(numInvocations, 1);
+});
+```
+
+You can also assign a context object to properties. This gets returned from setters to enable method chaining, and also is passed to listeners as `this`.
+
+```javascript
+it("Should accept a context object and return it from setters (method chaining).", function (){
+
+  var context = {};
+  context.a = ReactiveProperty(5, context);
+  context.b = ReactiveProperty(10, context);
+
+  assert.equal(context.a(), 5);
+  assert.equal(context.b(), 10);
+
+  context
+    .a(50)
+    .b(100);
+
+  assert.equal(context.a(), 50);
+  assert.equal(context.b(), 100);
+
+});
+
+it("Should pass the context object as 'this' in listeners.", function (done){
+
+  var context = {};
+  context.a = ReactiveProperty(5, context);
+  context.b = ReactiveProperty(10, context);
+
+  context.a.on(function (value){
+    assert.equal(this, context);
+    done();
+  }); 
 });
 ```
 

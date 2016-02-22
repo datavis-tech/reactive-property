@@ -32,6 +32,25 @@ describe("ReactiveProperty", function() {
       assert.equal(a(), 10);
     });
 
+
+    it("Should accept a context object and return it from setters (method chaining).", function (){
+
+      var context = {};
+      context.a = ReactiveProperty(5, context);
+      context.b = ReactiveProperty(10, context);
+
+      assert.equal(context.a(), 5);
+      assert.equal(context.b(), 10);
+
+      context
+        .a(50)
+        .b(100);
+
+      assert.equal(context.a(), 50);
+      assert.equal(context.b(), 100);
+
+    });
+
   });
 
 
@@ -90,6 +109,18 @@ describe("ReactiveProperty", function() {
         done();
       }); 
       a(10);
+    });
+
+    it("Should pass the context object as 'this' in listeners.", function (done){
+
+      var context = {};
+      context.a = ReactiveProperty(5, context);
+      context.b = ReactiveProperty(10, context);
+
+      context.a.on(function (value){
+        assert.equal(this, context);
+        done();
+      }); 
     });
   });
 
@@ -168,7 +199,7 @@ describe("ReactiveProperty", function() {
     
     it("Should throw an error if constructor invoked with too many arguments.", function (){
       assert.throws(function (){
-        ReactiveProperty(1, 2);
+        ReactiveProperty(1, 2, 3);
       });
     });
 
