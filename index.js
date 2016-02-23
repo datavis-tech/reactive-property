@@ -15,19 +15,30 @@
   // This function generates a getter-setter with change listeners.
   return function ReactiveProperty(value, context){
     var listeners, i;
-    if(arguments.length > 2) { throw Error(errors.tooManyArgsConstructor); }
+    
+    if(arguments.length > 2) {
+      throw Error(errors.tooManyArgsConstructor);
+    }
 
     function property(newValue){
-      if(arguments.length > 1) { throw Error(errors.tooManyArgsSetter); }
+      
+      if(arguments.length > 1) {
+        throw Error(errors.tooManyArgsSetter);
+      }
+      
       if(arguments.length === 1){
         value = newValue;
+        
         if(listeners){
-          for(i = 0; i < listeners.length; i++){ listeners[i](value); }
+          for(i = 0; i < listeners.length; i++){
+            listeners[i](value);
+          }
         }
+        
         return context;
-      } else {
-        return value;
       }
+      
+      return value;
     }
 
     property.on = function (listener){
