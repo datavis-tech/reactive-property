@@ -6,7 +6,7 @@
 
   // Error messages for exceptions thrown.
   var errors = {
-    tooManyArgsConstructor: "ReactiveProperty(value, [context]) accepts up to two arguments, the initial value and (optionally) the context object.",
+    tooManyArgsConstructor: "ReactiveProperty(value) accepts only one argument, the initial value.",
     tooManyArgsSetter: "reactiveProperty(newValue) accepts only a single argument, the new value.",
     onNonFunction: "ReactiveProperty.on(listener) only accepts functions, not values.",
     onArgs: "ReactiveProperty.on(listener) accepts exactly one argument, the listener function."
@@ -14,31 +14,26 @@
 
   // This function generates a getter-setter with change listeners.
   return function ReactiveProperty(value){
-    var listeners, context;
+    var listeners;
     
     if(arguments.length > 2) {
       throw Error(errors.tooManyArgsConstructor);
     }
 
     function property(newValue){
-      
       if(arguments.length > 1) {
         throw Error(errors.tooManyArgsSetter);
-      }
-      
-      if(arguments.length === 1){
+      } else if(arguments.length === 1){
         value = newValue;
-        
         if(listeners){
           for(var i = 0; i < listeners.length; i++){
-            listeners[i].call(context, value);
+            listeners[i](value);
           }
         }
-        
-        return context;
+        return this;
+      } else {
+        return value;
       }
-      
-      return value;
     }
 
     property.on = function (listener){
@@ -58,7 +53,7 @@
       listeners.push(listener);
 
       if(typeof(value) !== "undefined" && value !== null){
-        listener.call(context, value);
+        listener(value);
       }
 
       return listener;
@@ -70,10 +65,6 @@
           return listener !== listenerToRemove;
         });
       }
-    };
-
-    property.bind = function (_){
-      context = _;
     };
 
     return property;

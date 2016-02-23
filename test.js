@@ -33,21 +33,20 @@ describe("ReactiveProperty", function() {
     });
 
 
-    it("Should bind to a context object and return it from setters for method chaining.", function (){
+    it("Should support method chaining.", function (){
 
-      var context = {};
-      context.a = ReactiveProperty(5).bind(context);
-      context.b = ReactiveProperty(10).bind(context);
+      var my = {
+        a: ReactiveProperty(5),
+        b: ReactiveProperty(10)
+      };
 
-      assert.equal(context.a(), 5);
-      assert.equal(context.b(), 10);
+      assert.equal(my.a(), 5);
+      assert.equal(my.b(), 10);
 
-      context
-        .a(50)
-        .b(100);
+      my.a(50).b(100);
 
-      assert.equal(context.a(), 50);
-      assert.equal(context.b(), 100);
+      assert.equal(my.a(), 50);
+      assert.equal(my.b(), 100);
 
     });
 
@@ -118,18 +117,19 @@ describe("ReactiveProperty", function() {
       a(10);
     });
 
-    it("Should pass the context object as 'this' in listeners.", function (done){
-      var context = {};
-      context.a = ReactiveProperty(5).bind(context);
-      context.a.on(function (value){
-        assert.equal(this, context);
-        if(value === 5){
-          context.a(10);
-        } else {
-          done();
-        }
-      }); 
-    });
+    // This feature was removed. Please open an issue if you want this feature.
+    //it("Should pass the context object as 'this' in listeners.", function (done){
+    //  var context = {};
+    //  context.a = ReactiveProperty(5);
+    //  context.a.on(function (value){
+    //    assert.equal(this, context);
+    //    if(value === 5){
+    //      context.a(10);
+    //    } else {
+    //      done();
+    //    }
+    //  }); 
+    //});
 
   });
 
