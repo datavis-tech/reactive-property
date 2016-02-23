@@ -21,13 +21,13 @@ var ReactiveProperty = require("reactive-property");
 If you're not using NPM, you can require the script in your HTML like this.
 
 ```html
-<script src="//curran.github.io/reactive-property/reactive-property-v0.5.0.js"></script>
+<script src="//curran.github.io/reactive-property/reactive-property-v0.6.0.js"></script>
 ```
 
 Or, you can use the minified version (1.5K).
 
 ```html
-<script src="//curran.github.io/reactive-property/reactive-property-v0.5.0.min.js"></script>
+<script src="//curran.github.io/reactive-property/reactive-property-v0.6.0.min.js"></script>
 ```
 
 Create your first property.
