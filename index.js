@@ -13,8 +13,8 @@
   };
 
   // This function generates a getter-setter with change listeners.
-  return function ReactiveProperty(value, context){
-    var listeners;
+  return function ReactiveProperty(value){
+    var listeners, context;
     
     if(arguments.length > 2) {
       throw Error(errors.tooManyArgsConstructor);
@@ -70,6 +70,10 @@
           return listener !== listenerToRemove;
         });
       }
+    };
+
+    property.bind = function (_){
+      context = _;
     };
 
     return property;

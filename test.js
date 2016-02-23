@@ -33,11 +33,11 @@ describe("ReactiveProperty", function() {
     });
 
 
-    it("Should accept a context object and return it from setters (method chaining).", function (){
+    it("Should bind to a context object and return it from setters for method chaining.", function (){
 
       var context = {};
-      context.a = ReactiveProperty(5, context);
-      context.b = ReactiveProperty(10, context);
+      context.a = ReactiveProperty(5).bind(context);
+      context.b = ReactiveProperty(10).bind(context);
 
       assert.equal(context.a(), 5);
       assert.equal(context.b(), 10);
@@ -120,7 +120,7 @@ describe("ReactiveProperty", function() {
 
     it("Should pass the context object as 'this' in listeners.", function (done){
       var context = {};
-      context.a = ReactiveProperty(5, context);
+      context.a = ReactiveProperty(5).bind(context);
       context.a.on(function (value){
         assert.equal(this, context);
         if(value === 5){
