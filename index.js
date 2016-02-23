@@ -14,7 +14,7 @@
 
   // This function generates a getter-setter with change listeners.
   return function ReactiveProperty(value, context){
-    var listeners, i;
+    var listeners;
     
     if(arguments.length > 2) {
       throw Error(errors.tooManyArgsConstructor);
@@ -30,7 +30,7 @@
         value = newValue;
         
         if(listeners){
-          for(i = 0; i < listeners.length; i++){
+          for(var i = 0; i < listeners.length; i++){
             listeners[i](value);
           }
         }
