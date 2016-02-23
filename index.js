@@ -57,7 +57,7 @@
 
       listeners.push(listener);
 
-      if(typeof(value) !== "undefined"){// && value !== null){
+      if(typeof(value) !== "undefined" && value !== null){
         listener.call(context, value);
       }
 

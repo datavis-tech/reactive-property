@@ -80,6 +80,13 @@ describe("ReactiveProperty", function() {
       assert.equal(numInvocations, 0);
     });
 
+    it("Should not react to null.", function () {
+      var a = ReactiveProperty(null);
+      var numInvocations = 0;
+      a.on(function (){ numInvocations++; }); 
+      assert.equal(numInvocations, 0);
+    });
+
     it("Should react synchronously.", function () {
       var a = ReactiveProperty();
       var numInvocations = 0;
