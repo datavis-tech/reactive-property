@@ -87,6 +87,14 @@ For more detailed example code, have a look at the [tests](https://github.com/cu
 
 After many attempts at building "frameworks" for data visualization ([ModelJS](https://github.com/curran/model), [Chiasm](https://github.com/chiasm-project/chiasm)), I have learned that abstractions come at a cost. Much to my dismay, I found that when I wanted to apply Chiasm to a particular project, the abstractions had too much surface area and stood in the way of customization. I found myself starting again from raw D3 examples to get projects done, and noticed that as a project grows in complexity organically, the most common need is to *listen for changes in state*.
 
-**This library is my attempt to create a "micro-framework" that eliminates the getter-setter boilerplate code and provides the ability to listen for changes in state.** It is intentionally minimal, and *no other features* are provided. This is to minimize the surface area of this library, and make it appealing for others to adopt as a utility in D3-based projects. This library is "complete" and fully functional as-is. Aside from bugs or edge cases that come up, no new features will be added to this library. This library is designed to be the foundation of larger systems, and additional functionality should arise by composing this library with other code.
+**This library is my attempt to create a "micro-framework" that eliminates the getter-setter boilerplate code and provides the ability to listen for changes in state.** It is intentionally minimal, and no other features are provided. This is to minimize the surface area of this library, and make it appealing for others to adopt as a utility in D3-based projects. 
 
-I hope you enjoy and benefit from this project! Feel free to open GitHub issues if you have any questions, comments or suggestions.
+This library is "complete" and fully functional as-is. Aside from bugs or edge cases that come up, no new features will be added to this library. This library is designed to be the foundation of larger systems, and additional functionality should arise by composing this library with other code.
+
+## Contributing
+
+ * If you think this project is cool, please give it a star!
+ * If you end up using this in an example on bl.ocks.org, please let me know by creating a GitHub issue, we can link to your example in this README.
+ * Feel free to open GitHub issues if you have any questions, comments or suggestions.
+
+I hope you enjoy and benefit from this project!
