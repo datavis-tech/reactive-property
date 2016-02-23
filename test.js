@@ -112,16 +112,18 @@ describe("ReactiveProperty", function() {
     });
 
     it("Should pass the context object as 'this' in listeners.", function (done){
-
       var context = {};
       context.a = ReactiveProperty(5, context);
-      context.b = ReactiveProperty(10, context);
-
       context.a.on(function (value){
         assert.equal(this, context);
-        done();
+        if(value === 5){
+          context.a(10);
+        } else {
+          done();
+        }
       }); 
     });
+
   });
 
 

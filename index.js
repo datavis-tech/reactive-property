@@ -31,7 +31,7 @@
         
         if(listeners){
           for(var i = 0; i < listeners.length; i++){
-            listeners[i](value);
+            listeners[i].call(context, value);
           }
         }
         
@@ -57,7 +57,7 @@
 
       listeners.push(listener);
 
-      if(typeof(value) !== "undefined"){
+      if(typeof(value) !== "undefined"){// && value !== null){
         listener.call(context, value);
       }
 
