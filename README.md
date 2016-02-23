@@ -147,6 +147,16 @@ myObject(myObject()); // This triggers the listener, but is ugly.
 
 The above code does work, but it's actually mutating the value, then passing it into the setter. This is not a good solution. In situations like this, you're better off using immutable types such as those provided in [Immutable.js](https://facebook.github.io/immutable-js/) for complex value types.
 
+Here's what that would look like for objects (Maps):
+
+```javascript
+var myMap = ReactiveProperty(Immutable.Map({ x: 5 }););
+myMap.on(function (value){ console.log("Updated"); });
+myMap(myMap().set("y", 10)); // Sets the new value, invokes the listener.
+```
+
+This is the kind of code we should see when working with complex value types.
+
 ## Contributing
 
  * If you think this project is cool, please give it a star!
