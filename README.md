@@ -124,14 +124,6 @@ However, let's say you want to use `push`, how could that work?
 ```javascript
 var myList = ReactiveProperty(["a"]);
 myList.on(function (value){ console.log("Updated"); });
-myList(myList().push(b)); // Listener does get invoked.
-```
-
-This looks OK, but what is it really doing? The following code is equivalent.
-
-```javascript
-var myList = ReactiveProperty(["a"]);
-myList.on(function (value){ console.log("Updated"); });
 myList().push("b"); // Object mutated, listener not invoked.
 myList(myList()); // Listener does get invoked.
 ```
@@ -145,11 +137,7 @@ myObject().y = 10; // Object mutated, listener not invoked.
 myObject(myObject()); // This triggers the listener, but is ugly.
 ```
 
-The above code does work, but it's actually mutating the value, then passing it into the setter. This is not a good solution.
-
-In situations like this, you're better off using immutable types such as those provided in [Immutable.js](https://facebook.github.io/immutable-js/) for complex value types.
-
-Here's what using immutable types would look like for arrays (Lists):
+The above solution does work, but it's actually mutating the value, then passing it into the setter. This is not ideal. In situations like this, you're better off using immutable types such as those provided in [Immutable.js](https://facebook.github.io/immutable-js/) for complex value types. Here's what that would look like for arrays (Lists):
 
 ```javascript
 var myList = ReactiveProperty(Immutable.List(["a"]););
