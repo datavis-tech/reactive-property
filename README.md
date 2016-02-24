@@ -4,11 +4,9 @@ This [tiny](https://github.com/curran/reactiveProperty/blob/master/index.js) lib
 
 It also adds the ability to react to changes in state.
 
-[![NPM](https://nodei.co/npm/reactive-property.png)](https://npmjs.org/package/reactive-property)
+[![NPM](https://nodei.co/npm/reactive-property.png)](https://npmjs.org/package/reactive-property) [![Build Status](https://travis-ci.org/curran/reactive-property.svg?branch=master)](https://travis-ci.org/curran/reactive-property)
 
-[![Build Status](https://travis-ci.org/curran/reactive-property.svg?branch=master)](https://travis-ci.org/curran/reactive-property)
-
-## Usage
+## Installation
 
 Install the library by running this command.
 
@@ -31,6 +29,8 @@ Or, you can use the minified version (1.5K).
 ```html
 <script src="//curran.github.io/reactive-property/reactive-property-v0.6.0.min.js"></script>
 ```
+
+## Usage
 
 Create your first property.
 
@@ -61,7 +61,20 @@ a.on(function(value){
 Cancel your subscription.
 
 ```javascript
-var listener = a.on(function(){ console.log("'a' changed!"); });
+function listener(){
+  console.log("'a' changed!");
+}
+a.on(listener);
+a.off(listener);
+a(5); // The listener is NOT called.
+```
+
+For convenenience, the listener function is returned from the call to `on`, so the following would also work.
+
+```javascript
+var listener = a.on(function (){
+  console.log("'a' changed!");
+});
 a.off(listener);
 a(5); // The listener is NOT called.
 ```
@@ -69,18 +82,14 @@ a(5); // The listener is NOT called.
 Set up method chaining by using a context object.
 
 ```javascript
-var my = {};
-my.x = ReactiveProperty(5, my);
-my.y = ReactiveProperty(10, my);
-my.x(50).y(100);
-```
-
-You can access the context object as `this` in listeners.
-
-```javascript
-my.x.on(function(value){
-  console.log(this === my); // Prints "true"
-});
+var my = {
+  x: ReactiveProperty(5),
+  y: ReactiveProperty(10),
+  z: ReactiveProperty(15)
+};
+my.x(50)
+  .y(100)
+  .z(150);
 ```
 
 For more detailed example code, have a look at the [tests](https://github.com/curran/reactiveProperty/blob/master/test.js)..
