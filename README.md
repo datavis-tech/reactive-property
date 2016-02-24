@@ -1,4 +1,6 @@
-# reactive-property [![NPM](https://nodei.co/npm/reactive-property.png)](https://npmjs.org/package/reactive-property) [![Build Status](https://travis-ci.org/curran/reactive-property.svg?branch=master)](https://travis-ci.org/curran/reactive-property)
+# reactive-property [![Build Status](https://travis-ci.org/curran/reactive-property.svg?branch=master)](https://travis-ci.org/curran/reactive-property)
+
+[![NPM](https://nodei.co/npm/reactive-property.png)](https://npmjs.org/package/reactive-property)
 
 This [tiny](https://github.com/curran/reactiveProperty/blob/master/index.js) library abstracts the getter-setter pattern described in [Towards Reusable Charts (by Mike Bostock, 2012)](https://bost.ocks.org/mike/chart/) and adds the ability to react to changes in state.
 
@@ -17,13 +19,13 @@ var ReactiveProperty = require("reactive-property");
 If you're not using NPM, you can require the script in your HTML like this.
 
 ```html
-<script src="//curran.github.io/reactive-property/reactive-property-v0.6.0.js"></script>
+<script src="//curran.github.io/reactive-property/reactive-property-v0.7.0.js"></script>
 ```
 
 Or, you can use the minified version (1.5K).
 
 ```html
-<script src="//curran.github.io/reactive-property/reactive-property-v0.6.0.min.js"></script>
+<script src="//curran.github.io/reactive-property/reactive-property-v0.7.0.min.js"></script>
 ```
 
 ## Usage
