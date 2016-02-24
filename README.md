@@ -4,30 +4,6 @@
 
 A small library for getter-setter functions that react to changes.
 
-## Installation
-
-Install the library by running this command.
-
-`npm install reactive-property`
-
-Require it in your code like this.
-
-```javascript
-var ReactiveProperty = require("reactive-property");
-```
-
-If you're not using NPM, you can require the script in your HTML like this.
-
-```html
-<script src="//curran.github.io/reactive-property/reactive-property-v0.7.0.js"></script>
-```
-
-Or, you can use the minified version (1.5K).
-
-```html
-<script src="//curran.github.io/reactive-property/reactive-property-v0.7.0.min.js"></script>
-```
-
 ## Usage
 
 Create your first property.
@@ -82,15 +58,37 @@ Set up method chaining by using a context object.
 ```javascript
 var my = {
   x: ReactiveProperty(5),
-  y: ReactiveProperty(10),
-  z: ReactiveProperty(15)
+  y: ReactiveProperty(10)
 };
-my.x(50)
-  .y(100)
-  .z(150);
+my.x(50).y(100);
 ```
 
-For more detailed example code, have a look at the [tests](https://github.com/curran/reactiveProperty/blob/master/test.js)..
+That covers the entire API. For more detailed example code, have a look at the [tests](https://github.com/curran/reactiveProperty/blob/master/test.js).
+
+
+## Installation
+
+Install the library by running this command.
+
+`npm install reactive-property`
+
+Require it in your code like this.
+
+```javascript
+var ReactiveProperty = require("reactive-property");
+```
+
+If you're not using NPM, you can require the script in your HTML like this.
+
+```html
+<script src="//curran.github.io/reactive-property/reactive-property-v0.7.0.js"></script>
+```
+
+Or, you can use the minified version (1.5K).
+
+```html
+<script src="//curran.github.io/reactive-property/reactive-property-v0.7.0.min.js"></script>
+```
 
 ## Background
 
