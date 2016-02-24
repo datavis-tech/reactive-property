@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/reactive-property.png)](https://npmjs.org/package/reactive-property)
 
-This [tiny](https://github.com/curran/reactiveProperty/blob/master/index.js) library abstracts the getter-setter pattern described in [Towards Reusable Charts (by Mike Bostock, 2012)](https://bost.ocks.org/mike/chart/) and adds the ability to react to changes in state.
+A small library for getter-setter functions that react to changes.
 
 ## Installation
 
@@ -93,6 +93,12 @@ my.x(50)
 For more detailed example code, have a look at the [tests](https://github.com/curran/reactiveProperty/blob/master/test.js)..
 
 ## Background
+
+Related works:
+
+ * [Towards Reusable Charts (by Mike Bostock, 2012)](https://bost.ocks.org/mike/chart/)
+ * [KnockoutJS Observables](http://knockoutjs.com/documentation/observables.html)
+ * [RxJS Observables](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md)
 
 After many attempts at building "frameworks" for data visualization ([ModelJS](https://github.com/curran/model), [Chiasm](https://github.com/chiasm-project/chiasm)), I have learned that abstractions come at a cost. Much to my dismay, I found that when I wanted to apply Chiasm to a particular project, the abstractions had too much surface area and stood in the way of customization. I found myself starting again from raw D3 examples to get projects done, and noticed that as a project grows in complexity organically, the most common need is to *listen for changes in state*.
 
