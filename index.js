@@ -74,7 +74,8 @@
       listeners.push(listener);
 
       // If there is an initial value, invoke the listener immediately.
-      if(typeof(value) !== "undefined" && value !== null){
+      // null is considered as a defined value.
+      if(value !== void 0){
         listener(value);
       }
 
