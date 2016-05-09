@@ -84,13 +84,22 @@ Or use the minified version.
 
 [Try reactive-property in your browser.](https://tonicdev.com/573098b1f32f57120089aef5/573098b1f32f57120089aef6)
 
-## Usage
+## API Reference
+
+* [Creating Properties](#creating-properties)
+* [Accessing Properties](#accessing-properties)
+* [Method Chaining](#method-chaining)
+* [Listening for Changes](#accessing-properties)
+
+### Creating Properties
 
 Create a property.
 
 ```javascript
 var a = ReactiveProperty();
 ```
+
+### Accessing Properties 
 
 Set its value.
 
@@ -104,6 +113,7 @@ Get its value.
 a();
 ```
 
+### Method Chaining
 Set up method chaining by using a context object.
 
 ```javascript
@@ -123,7 +133,9 @@ my.y = ReactiveProperty(10);
 my.x(50).y(100);
 ```
 
-Listen for changes. The callback function will be invoked synchronously when the property value is set. The callback will be passed the current value as the first argument and the previous value as the second argument (may be `undefined` if the value was not previously set).
+### Listening for Changes
+
+The callback function will be invoked synchronously when the property value is set. The callback will be passed the current value as the first argument and the previous value as the second argument (may be `undefined` if the value was not previously set).
 
 ```javascript
 a.on(function(value, oldValue){
@@ -160,7 +172,7 @@ a.destroy();
 
 That covers the entire API. For more detailed example code, have a look at the [tests](https://github.com/datavis-tech/reactive-property/blob/master/test.js).
 
-A reactive property is similar to [KnockoutJS Observables](http://knockoutjs.com/documentation/observables.html) and [RxJS Observables](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md).
+This library draws ideas from [KnockoutJS Observables](http://knockoutjs.com/documentation/observables.html) and [RxJS Observables](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md).
 
 I hope you enjoy and benefit from this project!
 
