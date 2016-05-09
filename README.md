@@ -1,12 +1,10 @@
 # reactive-property
 
-A small library for getter-setter functions that react to changes.
+A small library for getter-setter functions that react to changes. [![NPM](https://nodei.co/npm/reactive-property.png?mini=true)](https://npmjs.org/package/reactive-property) [![Build Status](https://travis-ci.org/datavis-tech/reactive-property.svg?branch=master)](https://travis-ci.org/curran/reactive-property)
 
-[![NPM](https://nodei.co/npm/reactive-property.png)](https://npmjs.org/package/reactive-property) [![Build Status](https://travis-ci.org/datavis-tech/reactive-property.svg?branch=master)](https://travis-ci.org/curran/reactive-property)
+The pattern for creating reusable data visualizations described in [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) is great. However, the boilerplate code for getter-setter functions is a bit cumbersome. *This library creates chainable getter-setter functions so you don't have to.* For more information, see ["Introducing reactive-property" on Medium](https://medium.com/@currankelleher/introducing-reactive-property-4b41a8bdcc8e).
 
-The pattern for creating reusable data visualizations described in [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) is great. However, the boilerplate code for getter-setter functions is a bit cumbersome. This library creates chainable getter-setter functions so you don't have to. For more information, see ["Introducing reactive-property" on Medium](https://medium.com/@currankelleher/introducing-reactive-property-4b41a8bdcc8e).
-
-Here's a code example from [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) showing the general pattern.
+Here's a code example from [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) showing the general pattern with *width* and *height* as example chainable getter-setters.
 
 ```javascript
 function chart() {
@@ -56,7 +54,7 @@ Pros:
 Cons:
 
  * You'll have one more dependency.
- * You'll need to access the property via the getter (`my.width()` instead of simply `width`).
+ * You'll need to access property via the getter (`my.width()` instead of simply `width`).
 
 ## Installing
 
@@ -89,7 +87,7 @@ Or use the minified version.
 * [Creating Properties](#creating-properties)
 * [Accessing Properties](#accessing-properties)
 * [Method Chaining](#method-chaining)
-* [Listening for Changes](#accessing-properties)
+* [Listening for Changes](#listening-for-changes)
 
 ### Creating Properties
 
@@ -110,6 +108,7 @@ var a = ReactiveProperty(3); // The default value is 3.
 ### Accessing Properties 
 
 <a name="getter-setter" href="#getter-setter">#</a> <i>reactiveProperty</i>([<i>value</i>])
+
 If *value* is specified, sets the value of the property (this is the "setter" aspect). The context object is returned to support [method chaining](#method-chaining).
 
 ```javascript
@@ -146,6 +145,7 @@ my.x(50).y(100);
 ### Listening for Changes
 
 <a name="on" href="#on">#</a> <i>reactiveProperty</i>.<b>on</b>(<i>listener(value, oldValue)</i>)
+
 Listens for changes in the property value. Returns *listener*.
 
 The *listener* callback function will be invoked synchronously when the property value is set. If the property has a default value that is not `undefined`, then *listener* is invoked immediately. The special value `null` is considered a defined value and is passed into listeners, whereas setting a property value to `undefined` does not cause the listener to be invoked.
@@ -182,6 +182,7 @@ a(5); // The listener is NOT called.
 ```
 
 <a name="destroy" href="#destroy">#</a> <i>reactiveProperty</i>.<b>destroy</b>()
+
 Removes all listeners previously added with [on](#on). This is for the case that you know you won't be using a property anymore and want to be sure to avoid memory leaks.
 
 ```
