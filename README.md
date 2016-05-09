@@ -4,6 +4,75 @@
 
 A small library for getter-setter functions that react to changes.
 
+The pattern for creating reusable data visualizations described in [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) is great. However, the boilerplate code for getter-setter functions is a bit cumbersome. This library creates chainable getter-setter functions so you don't have to. For more information, see ["Introducing reactive-property" on Mediun](https://medium.com/@currankelleher/introducing-reactive-property-4b41a8bdcc8e).
+
+Here's a code example from [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) showing the general pattern.
+
+```javascript
+function chart() {
+  var width = 720, // default width
+      height = 80; // default height
+
+  function my() {
+    // generate chart here, using `width` and `height`
+  }
+
+  my.width = function(value) {
+    if (!arguments.length) return width;
+    width = value;
+    return my;
+  };
+
+  my.height = function(value) {
+    if (!arguments.length) return height;
+    height = value;
+    return my;
+  };
+
+  return my;
+}
+```
+
+Here's what the above code can look like when using reactive-property:
+
+```javascript
+function chart() {
+
+  function my() {
+    // generate chart here, using `my.width()` and `my.height()`
+  }
+
+  my.width = ReactiveProperty(720);
+  my.height = ReactiveProperty(80);
+
+  return my;
+}
+```
+
+## Installation
+
+Install the library by running this command.
+
+`npm install reactive-property`
+
+Require it in your code like this.
+
+```javascript
+var ReactiveProperty = require("reactive-property");
+```
+
+If you're not using NPM, you can require the script in your HTML like this.
+
+```html
+<script src="//curran.github.io/reactive-property/reactive-property-v0.7.0.js"></script>
+```
+
+Or, you can use the minified version (1.5K).
+
+```html
+<script src="//curran.github.io/reactive-property/reactive-property-v0.7.0.min.js"></script>
+```
+
 ## Usage
 
 Create your first property.
@@ -66,30 +135,6 @@ my.x(50).y(100);
 That covers the entire API. For more detailed example code, have a look at the [tests](https://github.com/curran/reactiveProperty/blob/master/test.js).
 
 
-## Installation
-
-Install the library by running this command.
-
-`npm install reactive-property`
-
-Require it in your code like this.
-
-```javascript
-var ReactiveProperty = require("reactive-property");
-```
-
-If you're not using NPM, you can require the script in your HTML like this.
-
-```html
-<script src="//curran.github.io/reactive-property/reactive-property-v0.7.0.js"></script>
-```
-
-Or, you can use the minified version (1.5K).
-
-```html
-<script src="//curran.github.io/reactive-property/reactive-property-v0.7.0.min.js"></script>
-```
-
 ## Background
 
 Related works:
@@ -97,12 +142,6 @@ Related works:
  * [Towards Reusable Charts (by Mike Bostock, 2012)](https://bost.ocks.org/mike/chart/)
  * [KnockoutJS Observables](http://knockoutjs.com/documentation/observables.html)
  * [RxJS Observables](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md)
-
-After many attempts at building "frameworks" for data visualization ([ModelJS](https://github.com/curran/model), [Chiasm](https://github.com/chiasm-project/chiasm)), I have learned that abstractions come at a cost. Much to my dismay, I found that when I wanted to apply Chiasm to a particular project, the abstractions had too much surface area and stood in the way of customization. I found myself starting again from raw D3 examples to get projects done, and noticed that as a project grows in complexity organically, the most common need is to *listen for changes in state*.
-
-**This library is my attempt to create a "micro-framework" that eliminates the getter-setter boilerplate code and provides the ability to listen for changes in state.** It is intentionally minimal, and no other features are provided. This is to minimize the surface area of this library, and make it appealing for others to adopt as a utility. It is intended for use with D3-based projects, as it helps you generate APIs that follow the D3 convention of chainable getter-setters, but it can be used with other libraries too.
-
-This library is "complete" and fully functional as-is. Aside from bugs or edge cases that come up, no new features will be added to this library. This library is designed to be the foundation of larger systems, and additional functionality should arise by composing this library with other code.
 
 ## A Note on Immutability
 
