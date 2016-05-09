@@ -1,8 +1,8 @@
 # reactive-property [![Build Status](https://travis-ci.org/curran/reactive-property.svg?branch=master)](https://travis-ci.org/curran/reactive-property)
 
-[![NPM](https://nodei.co/npm/reactive-property.png)](https://npmjs.org/package/reactive-property)
-
 A small library for getter-setter functions that react to changes.
+
+[![NPM](https://nodei.co/npm/reactive-property.png)](https://npmjs.org/package/reactive-property)
 
 The pattern for creating reusable data visualizations described in [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) is great. However, the boilerplate code for getter-setter functions is a bit cumbersome. This library creates chainable getter-setter functions so you don't have to. For more information, see ["Introducing reactive-property" on Medium](https://medium.com/@currankelleher/introducing-reactive-property-4b41a8bdcc8e).
 
