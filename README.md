@@ -93,6 +93,25 @@ Get its value.
 a();
 ```
 
+Set up method chaining by using a context object.
+
+```javascript
+var my = {
+  x: ReactiveProperty(5),
+  y: ReactiveProperty(10)
+};
+my.x(50).y(100);
+```
+
+You can also set up properties this way.
+
+```javascript
+var my = {};
+my.x = ReactiveProperty(5);
+my.y = ReactiveProperty(10);
+my.x(50).y(100);
+```
+
 Listen for changes.
 
 ```javascript
@@ -122,14 +141,10 @@ a.off(listener);
 a(5); // The listener is NOT called.
 ```
 
-Set up method chaining by using a context object.
+In case you know you won't be using a property anymore and want to be sure to avoid memory leaks, you can remove all listeners with the `destroy()` function like this.
 
-```javascript
-var my = {
-  x: ReactiveProperty(5),
-  y: ReactiveProperty(10)
-};
-my.x(50).y(100);
+```
+a.destroy();
 ```
 
 That covers the entire API. For more detailed example code, have a look at the [tests](https://github.com/curran/reactiveProperty/blob/master/test.js).

@@ -8,24 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/curran/reactive-property.git"
+    "url": "git+https://github.com/datavis-tech/reactive-property.git"
   },
-  "keywords": [
-    "reactive",
-    "flux",
-    "redux",
-    "graph",
-    "frp",
-    "functional",
-    "reactive",
-    "programming"
-  ],
   "author": "Curran Kelleher",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/curran/reactive-property/issues"
+    "url": "https://github.com/datavis-tech/reactive-property/issues"
   },
-  "homepage": "https://github.com/curran/reactive-property#readme",
+  "homepage": "https://github.com/datavis-tech/reactive-property#readme",
   "devDependencies": {
     "mocha": "^2.4.5"
   }

@@ -117,20 +117,6 @@ describe("ReactiveProperty", function() {
       a(10);
     });
 
-    // This feature was removed. Please open an issue if you want this feature.
-    //it("Should pass the context object as 'this' in listeners.", function (done){
-    //  var context = {};
-    //  context.a = ReactiveProperty(5);
-    //  context.a.on(function (value){
-    //    assert.equal(this, context);
-    //    if(value === 5){
-    //      context.a(10);
-    //    } else {
-    //      done();
-    //    }
-    //  }); 
-    //});
-
   });
 
 

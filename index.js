@@ -92,6 +92,11 @@
       }
     };
 
+    // Unregisters all listeners.
+    reactiveProperty.destroy = function (){
+      listeners = [];
+    };
+
     return reactiveProperty;
   }
 }));
