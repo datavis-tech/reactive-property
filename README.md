@@ -93,13 +93,15 @@ Or use the minified version.
 
 ### Creating Properties
 
+<a name="reactive-property-constructor" href="#reactive-property-constructor">#</a> <b>ReactiveProperty</b>([<i>value</i>])
+
 Create a property by invoking `ReactiveProperty` as a constructor function.
 
 ```javascript
-var a = ReactiveProperty();
+var reactiveProperty = ReactiveProperty();
 ```
 
-Optionally, a default value can be passed into the constructor.
+If *value* is specified, it is set as the initial value of the property. This can be any type (string, number, boolean, object, array, function, null, undefined).
 
 ```javascript
 var a = ReactiveProperty(3); // The default value is 3.
@@ -107,13 +109,14 @@ var a = ReactiveProperty(3); // The default value is 3.
 
 ### Accessing Properties 
 
-Set its value.
+<a name="getter-setter" href="#getter-setter">#</a> <i>reactiveProperty</i>([<i>value</i>])
+If *value* is specified, sets the value of the property (this is the "setter" aspect). The context object is returned to support [method chaining](#method-chaining).
 
 ```javascript
 a(5);
 ```
 
-Get its value.
+If *value* is not specified, gets the value of the property (this is the "getter" aspect).
 
 ```javascript
 a(); // Returns 5
@@ -142,7 +145,12 @@ my.x(50).y(100);
 
 ### Listening for Changes
 
-The callback function will be invoked synchronously when the property value is set. The callback will be passed the current value as the first argument and the previous value as the second argument (may be `undefined` if the value was not previously set).
+<a name="on" href="#on">#</a> <i>reactiveProperty</i>.<b>on</b>(<i>listener(value, oldValue)</i>)
+Listens for changes in the property value. Returns *listener*.
+
+The *listener* callback function will be invoked synchronously when the property value is set. If the property has a default value that is not `undefined`, then *listener* is invoked immediately. The special value `null` is considered a defined value and is passed into listeners, whereas setting a property value to `undefined` does not cause the listener to be invoked.
+
+The *listener* callback is invoked with the current property value as *value* and the previous value as the second argument *oldValue* (which may be `undefined` if the value was not previously set).
 
 ```javascript
 a.on(function(value, oldValue){
@@ -150,7 +158,9 @@ a.on(function(value, oldValue){
 });
 ```
 
-Cancel your subscription.
+<a name="off" href="#off">#</a> <i>reactiveProperty</i>.<b>off</b>(<i>listener</i>)
+
+Removes the given *listener* function that was previously added with [on](#on).
 
 ```javascript
 function listener(){
@@ -161,7 +171,7 @@ a.off(listener);
 a(5); // The listener is NOT called.
 ```
 
-For convenenience, the listener function is returned from the call to `on`, so the following would also work.
+For convenenience, the listener function is returned from the call to `on`, so the following patterh also works.
 
 ```javascript
 var listener = a.on(function (){
@@ -171,18 +181,24 @@ a.off(listener);
 a(5); // The listener is NOT called.
 ```
 
-In case you know you won't be using a property anymore and want to be sure to avoid memory leaks, you can remove all listeners with the `destroy()` function like this.
+<a name="destroy" href="#destroy">#</a> <i>reactiveProperty</i>.<b>destroy</b>()
+Removes all listeners previously added with [on](#on). This is for the case that you know you won't be using a property anymore and want to be sure to avoid memory leaks.
 
 ```
-a.destroy();
+a.on(function (){ console.log("'a' changed!"); });
+a.on(function (){ console.log("'a' really changed!"); });
+a.destroy(); // Removes all listeners.
+a(5); // No listeners are called.
 ```
 
 That covers the entire API. For more detailed example code, have a look at the [tests](https://github.com/datavis-tech/reactive-property/blob/master/test.js).
+
+## Addendum
 
 This library draws ideas from [KnockoutJS Observables](http://knockoutjs.com/documentation/observables.html) and [RxJS Observables](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md).
 
 I hope you enjoy and benefit from this project!
 
-If you appreciate this Open Source work, please consider [supporting me on Patreon](https://www.patreon.com/user?u=2916242&ty=h) or [tip me with ChangeTip](http://curran.tip.me/).
+If you appreciate this Open Source work, please consider [supporting me on Patreon](https://www.patreon.com/user?u=2916242&ty=h).
 
-You can also hire me as a consultant, please reach out with inquiries at curran@datavis.tech.
+You can also hire me as a consultant, please reach out with inquiries to curran@datavis.tech.
