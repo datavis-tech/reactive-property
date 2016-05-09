@@ -93,29 +93,29 @@ Or use the minified version.
 
 <a name="reactive-property-constructor" href="#reactive-property-constructor">#</a> <b>ReactiveProperty</b>([<i>value</i>])
 
-Create a property by invoking `ReactiveProperty` as a constructor function.
+Create a property by invoking **ReactiveProperty** as a constructor function.
 
 ```javascript
 var reactiveProperty = ReactiveProperty();
 ```
 
-If *value* is specified, it is set as the initial value of the property. This can be any type (string, number, boolean, object, array, function, null, undefined).
+If *value* is specified, it is set as the initial value of the property. This value can be any type.
 
 ```javascript
-var a = ReactiveProperty(3); // The default value is 3.
+var a = ReactiveProperty(3); // The initial value is 3.
 ```
 
 ### Accessing Properties 
 
 <a name="getter-setter" href="#getter-setter">#</a> <i>reactiveProperty</i>([<i>value</i>])
 
-If *value* is specified, sets the value of the property (this is the "setter" aspect). The context object is returned to support [method chaining](#method-chaining).
+If *value* is specified, sets the value of the property. Returns the context object for [method chaining](#method-chaining).
 
 ```javascript
 a(5);
 ```
 
-If *value* is not specified, gets the value of the property (this is the "getter" aspect).
+If *value* is not specified, returns the value of the property.
 
 ```javascript
 a(); // Returns 5
@@ -123,14 +123,14 @@ a(); // Returns 5
 
 ### Method Chaining
 
-Set up chainable setters by using a context object.
+Set up chainable setters by using a context object (called `my` in this example).
 
 ```javascript
 var my = {
   x: ReactiveProperty(5),
   y: ReactiveProperty(10)
 };
-my.x(50).y(100);
+my.x(50).y(100); // Chainable setters.
 ```
 
 You can also set up properties this way.
@@ -148,12 +148,12 @@ my.x(50).y(100);
 
 Listens for changes in the property value. Returns *listener*.
 
-The *listener(value, oldValue)* callback function will be invoked synchronously when the property value is set. If the property has a default value that is not `undefined`, then *listener* is invoked immediately. The special value `null` is considered a defined value and is passed into listeners, whereas setting a property value to `undefined` does not cause the listener to be invoked.
+The *listener* callback function will be invoked synchronously when the property value is set. If the property has a default value that is not `undefined`, then *listener* is invoked immediately. The special value `null` is considered a defined value and is passed into listeners, whereas setting a property value to `undefined` does not cause the listener to be invoked.
 
-Arguments to *listener*:
+Arguments to the callback function - *listener(value, oldValue)*
 
- 1. *value* the current value
- 2. *oldValue* the previous value (may be `undefined` if the value was not previously set)
+ 1. *value* the current value of the property.
+ 2. *oldValue* the previous value (may be `undefined` if the value was not previously set).
 
 ```javascript
 a.on(function(value, oldValue){
@@ -174,7 +174,7 @@ a.off(listener);
 a(5); // The listener is NOT called.
 ```
 
-For convenenience, the listener function is returned from the call to `on`, so the following patterh also works.
+Since *listener* is returned from [on](#on), the following pattern also works.
 
 ```javascript
 var listener = a.on(function (){
@@ -186,7 +186,7 @@ a(5); // The listener is NOT called.
 
 <a name="destroy" href="#destroy">#</a> <i>reactiveProperty</i>.<b>destroy</b>()
 
-Removes all listeners previously added with [on](#on). This is for the case that you know you won't be using a property anymore and want to be sure to avoid memory leaks.
+Removes all listeners previously added with [on](#on). Use this to avoid memory leaks in cases where you know properties will no longer be used.
 
 ```
 a.on(function (){ console.log("'a' changed!"); });
