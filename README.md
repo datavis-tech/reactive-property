@@ -93,10 +93,16 @@ Or use the minified version.
 
 ### Creating Properties
 
-Create a property.
+Create a property by invoking `ReactiveProperty` as a constructor function.
 
 ```javascript
 var a = ReactiveProperty();
+```
+
+Optionally, a default value can be passed into the constructor.
+
+```javascript
+var a = ReactiveProperty(3); // The default value is 3.
 ```
 
 ### Accessing Properties 
@@ -110,11 +116,12 @@ a(5);
 Get its value.
 
 ```javascript
-a();
+a(); // Returns 5
 ```
 
 ### Method Chaining
-Set up method chaining by using a context object.
+
+Set up chainable setters by using a context object.
 
 ```javascript
 var my = {
