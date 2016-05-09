@@ -58,7 +58,7 @@ Cons:
  * You'll have one more dependency.
  * You'll need to access the property via the getter (`my.width()` instead of simply `width`).
 
-## Installation
+## Installing
 
 If you are using [NPM](https://www.npmjs.com), install the library by running this command.
 
@@ -81,6 +81,8 @@ Or use the minified version.
 ```html
 <script src="//datavis-tech.github.io/reactive-property/reactive-property-v0.9.0.min.js"></script>
 ```
+
+[Try reactive-property in your browser.](https://tonicdev.com/573098b1f32f57120089aef5/573098b1f32f57120089aef6)
 
 ## Usage
 
