@@ -97,7 +97,7 @@ describe("ReactiveProperty", function() {
       assert.equal(numInvocations, 2);
     });
 
-    it("Should stop reacting to changes.", function () {
+    it("Should stop reacting to changes after 'off'.", function () {
       var a = ReactiveProperty();
       var numInvocations = 0;
       var listener = a.on(function (){ numInvocations++; }); 
@@ -108,11 +108,38 @@ describe("ReactiveProperty", function() {
       assert.equal(numInvocations, 1);
     });
 
+    it("Should stop reacting to changes after 'destroy'.", function () {
+      var a = ReactiveProperty();
+      var numInvocations = 0;
+      var listener = a.on(function (){ numInvocations++; }); 
+      a(10);
+      assert.equal(numInvocations, 1);
+      a.destroy();
+      a(15);
+      assert.equal(numInvocations, 1);
+    });
+
     it("Should pass the value to the listener as an argument.", function (done) {
       var a = ReactiveProperty();
       a.on(function (value){
         assert.equal(value, 10);
         done();
+      }); 
+      a(10);
+    });
+
+    it("Should pass the old value to the listener as the second argument.", function (done) {
+      var a = ReactiveProperty();
+      a.on(function (value, oldValue){
+        if(value === 10){
+          assert.equal(value, 10);
+          assert(typeof oldValue === "undefined");
+          a(20);
+        } else if(value === 20){
+          assert.equal(value, 20);
+          assert.equal(oldValue, 10);
+          done();
+        }
       }); 
       a(10);
     });

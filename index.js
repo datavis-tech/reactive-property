@@ -34,13 +34,16 @@
       // This implements the setter part of the setter-getter.
       if(arguments.length === 1){
 
+        // Grab the old value for passing into the listener.
+        var oldValue = value;
+
         // Track the new value internally.
         value = newValue;
 
         // Notify registered listeners.
         if(listeners){
           for(var i = 0; i < listeners.length; i++){
-            listeners[i](value);
+            listeners[i](newValue, oldValue);
           }
         }
 

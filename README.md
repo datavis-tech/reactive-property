@@ -121,11 +121,11 @@ my.y = ReactiveProperty(10);
 my.x(50).y(100);
 ```
 
-Listen for changes. The callback function will be invoked synchronously when the property value is set.
+Listen for changes. The callback function will be invoked synchronously when the property value is set. The callback will be passed the current value as the first argument and the previous value as the second argument (may be `undefined` if the value was not previously set).
 
 ```javascript
-a.on(function(value){
-  console.log("The value of 'a' changed to " + value);
+a.on(function(value, oldValue){
+  console.log("The value of 'a' changed from " + oldValue + " to " + value);
 });
 ```
 
