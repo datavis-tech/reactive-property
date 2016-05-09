@@ -70,13 +70,13 @@ Require it in your code like this.
 var ReactiveProperty = require("reactive-property");
 ```
 
-You can require the script in your HTML like this.
+You can also require the script in your HTML like this.
 
 ```html
 <script src="//datavis-tech.github.io/reactive-property/reactive-property-v0.7.0.js"></script>
 ```
 
-Or, you can use the minified version (1.5K).
+Or use the minified version.
 
 ```html
 <script src="//datavis-tech.github.io/reactive-property/reactive-property-v0.7.0.min.js"></script>
@@ -84,7 +84,7 @@ Or, you can use the minified version (1.5K).
 
 ## Usage
 
-Create your first property.
+Create a property.
 
 ```javascript
 var a = ReactiveProperty();
@@ -121,7 +121,7 @@ my.y = ReactiveProperty(10);
 my.x(50).y(100);
 ```
 
-Listen for changes.
+Listen for changes. The callback function will be invoked synchronously when the property value is set.
 
 ```javascript
 a.on(function(value){
@@ -158,13 +158,7 @@ a.destroy();
 
 That covers the entire API. For more detailed example code, have a look at the [tests](https://github.com/datavis-tech/reactive-property/blob/master/test.js).
 
-
-## Related Work
-
- * [KnockoutJS Observables](http://knockoutjs.com/documentation/observables.html)
- * [RxJS Observables](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md)
- * [Model.js](https://github.com/curran/model)
-
+A reactive property is similar to [KnockoutJS Observables](http://knockoutjs.com/documentation/observables.html) and [RxJS Observables](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md).
 
 I hope you enjoy and benefit from this project!
 
