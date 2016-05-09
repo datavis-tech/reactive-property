@@ -2,7 +2,7 @@
 
 A small library for getter-setter functions that react to changes. [![NPM](https://nodei.co/npm/reactive-property.png?mini=true)](https://npmjs.org/package/reactive-property) [![Build Status](https://travis-ci.org/datavis-tech/reactive-property.svg?branch=master)](https://travis-ci.org/curran/reactive-property)
 
-The pattern for creating reusable data visualizations described in [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) is great. However, the boilerplate code for getter-setter functions is a bit cumbersome. *This library creates chainable getter-setter functions so you don't have to.* For more information, see ["Introducing reactive-property" on Medium](https://medium.com/@currankelleher/introducing-reactive-property-4b41a8bdcc8e).
+The pattern for creating reusable data visualizations described in [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) is great. However, the boilerplate code for getter-setter functions is a bit cumbersome. **This library creates chainable getter-setter functions so you don't have to.** For more information, see ["Introducing reactive-property" on Medium](https://medium.com/@currankelleher/introducing-reactive-property-4b41a8bdcc8e).
 
 Here's a code example from [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) showing the general pattern with *width* and *height* as example chainable getter-setters.
 
@@ -54,7 +54,7 @@ Pros:
 Cons:
 
  * You'll have one more dependency.
- * You'll need to access property via the getter (`my.width()` instead of simply `width`).
+ * You'll need to access values via getters (`my.width()` instead of simply `width`).
 
 ## Installing
 
@@ -144,13 +144,16 @@ my.x(50).y(100);
 
 ### Listening for Changes
 
-<a name="on" href="#on">#</a> <i>reactiveProperty</i>.<b>on</b>(<i>listener(value, oldValue)</i>)
+<a name="on" href="#on">#</a> <i>reactiveProperty</i>.<b>on</b>(<i>listener</i>)
 
 Listens for changes in the property value. Returns *listener*.
 
-The *listener* callback function will be invoked synchronously when the property value is set. If the property has a default value that is not `undefined`, then *listener* is invoked immediately. The special value `null` is considered a defined value and is passed into listeners, whereas setting a property value to `undefined` does not cause the listener to be invoked.
+The *listener(value, oldValue)* callback function will be invoked synchronously when the property value is set. If the property has a default value that is not `undefined`, then *listener* is invoked immediately. The special value `null` is considered a defined value and is passed into listeners, whereas setting a property value to `undefined` does not cause the listener to be invoked.
 
-The *listener* callback is invoked with the current property value as *value* and the previous value as the second argument *oldValue* (which may be `undefined` if the value was not previously set).
+Arguments to *listener*:
+
+ 1. *value* the current value
+ 2. *oldValue* the previous value (may be `undefined` if the value was not previously set)
 
 ```javascript
 a.on(function(value, oldValue){
