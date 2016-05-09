@@ -31,7 +31,7 @@ function chart() {
 }
 ```
 
-Here's what the above code can look like when using reactive-property:
+Here's how the above code can be transformed when using reactive-property.
 
 ```javascript
 function chart() {
