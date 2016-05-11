@@ -206,7 +206,11 @@ Data from benchmarks by @Hypercubed, found at [Hypercubed/EventsSpeedTests node-
 
 ## Addendum
 
-This library draws ideas from [KnockoutJS Observables](http://knockoutjs.com/documentation/observables.html) and [RxJS Observables](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md).
+Related works:
+
+ * [KnockoutJS Observables](http://knockoutjs.com/documentation/observables.html)
+ * [RxJS Observables](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md)
+ * [mini-signals](https://github.com/Hypercubed/mini-signals)
 
 I hope you enjoy and benefit from this project!
 
