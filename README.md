@@ -197,20 +197,24 @@ a(5); // No listeners are called.
 
 That covers the entire API. For more detailed example code, have a look at the [tests](https://github.com/datavis-tech/reactive-property/blob/master/test.js).
 
-## Performance
+## Comparison to Similar Libraries
 Reactive-model performs pretty well as compared to other implementations of the Observer and Event Emitter patterns.
 
 [![screen shot 2016-05-11 at 4 12 53 pm](https://cloud.githubusercontent.com/assets/68416/15179529/00cabbe4-179a-11e6-9c7e-023e26f17f35.png)](http://bl.ocks.org/curran/d02ad2dbe0fe688e46c45c3a7f001f50)
 
 Data from benchmarks by @Hypercubed, found at [Hypercubed/EventsSpeedTests node-v4.4.4](https://github.com/Hypercubed/EventsSpeedTests/blob/master/results/node-v4.4.4.md#emit-one-parameter).
 
-## Addendum
-
-Related works:
+Similar Libraries:
 
  * [KnockoutJS Observables](http://knockoutjs.com/documentation/observables.html)
  * [RxJS Observables](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md)
  * [mini-signals](https://github.com/Hypercubed/mini-signals)
+ * [SignalsLite.js](https://github.com/CaptainN/SignalsLite.js)
+ * [Node.js EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter)
+ * [event-signal](https://github.com/r-park/event-signal)
+ * [js-signals](https://millermedeiros.github.io/js-signals/)
+
+## Addendum
 
 I hope you enjoy and benefit from this project!
 
