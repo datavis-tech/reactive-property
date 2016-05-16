@@ -214,10 +214,8 @@ Similar Libraries:
  * [event-signal](https://github.com/r-park/event-signal)
  * [js-signals](https://millermedeiros.github.io/js-signals/)
 
-## Addendum
-
-I hope you enjoy and benefit from this project!
-
-If you appreciate this Open Source work, please consider [supporting me on Patreon](https://www.patreon.com/user?u=2916242&ty=h).
-
-You can also hire me as a consultant, please reach out with inquiries to curran@datavis.tech.
+<div style="text-align:center">
+  <a href="https://datavis.tech/">
+    <img src="https://cloud.githubusercontent.com/assets/68416/15298394/a7a0a66a-1bbc-11e6-9636-367bed9165fc.png">
+  </a>
+</div>
