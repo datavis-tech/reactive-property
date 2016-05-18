@@ -191,7 +191,7 @@ a(5); // The listener is NOT called.
 
 Removes all listeners previously added with [on](#on). Use this to avoid memory leaks in cases where you know properties will no longer be used.
 
-```
+```javascript
 a.on(function (){ console.log("'a' changed!"); });
 a.on(function (){ console.log("'a' really changed!"); });
 a.destroy(); // Removes all listeners.
