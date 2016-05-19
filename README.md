@@ -94,7 +94,7 @@ Or use the minified version.
 
 ### Creating Properties
 
-<a name="reactive-property-constructor" href="#reactive-property-constructor">#</a> <b>ReactiveProperty</b>([<i>value</i>])
+<a name="constructor" href="#constructor">#</a> <b>ReactiveProperty</b>([<i>value</i>])
 
 Create a property by invoking **ReactiveProperty** as a constructor function.
 
