@@ -4,6 +4,7 @@ A small library for getter-setter functions that react to changes.
 
 [![NPM](https://nodei.co/npm/reactive-property.png)](https://npmjs.org/package/reactive-property)
 [![NPM](https://nodei.co/npm-dl/reactive-property.png?months=3)](https://npmjs.org/package/reactive-property)
+[![Build Status](https://travis-ci.org/datavis-tech/reactive-property.svg?branch=master)](https://travis-ci.org/datavis-tech/reactive-property)
 
 The pattern for creating reusable data visualizations described in [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) is great. However, the boilerplate code for getter-setter functions is a bit cumbersome. **This library creates chainable getter-setter functions so you don't have to.** For more information, see ["Introducing reactive-property" on Medium](https://medium.com/@currankelleher/introducing-reactive-property-4b41a8bdcc8e).
 
@@ -60,8 +61,6 @@ Cons:
  * You'll need to access values via getters (`my.width()` instead of simply `width`).
 
 For more detailed example code, have a look at the [tests](https://github.com/datavis-tech/reactive-property/blob/master/test.js).
-
-[![Build Status](https://travis-ci.org/datavis-tech/reactive-property.svg?branch=master)](https://travis-ci.org/datavis-tech/reactive-property)
 
 ## Installing
 
