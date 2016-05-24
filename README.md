@@ -97,7 +97,7 @@ Or use the minified version.
 
 ### Creating Properties
 
-<a name="constructor" href="#constructor">#</a> <b>ReactiveProperty</b>([<i>value</i>])
+<a name="constructor" href="#constructor">#</a> <b>ReactiveProperty</b>([<i>defaultValue</i>])
 
 Create a property by invoking **ReactiveProperty** as a constructor function.
 
@@ -105,15 +105,15 @@ Create a property by invoking **ReactiveProperty** as a constructor function.
 var reactiveProperty = ReactiveProperty();
 ```
 
-If *value* is specified, it is set as the initial value of the property. This value can be any type.
+If *defaultValue* is specified, it is set as the default value of the property. This value can be any type.
 
 ```javascript
-var a = ReactiveProperty(3); // The initial value is 3.
+var a = ReactiveProperty(3); // The default value is 3.
 ```
 
 ### Accessing Properties 
 
-<a name="getter-setter" href="#getter-setter">#</a> <i>reactiveProperty</i>([<i>value</i>])
+<a name="getter-setter" href="#getter-setter">#</a> <b><i>reactiveProperty</i></b>([<i>value</i>])
 
 If *value* is specified, sets the value of the property. Returns the context object for [method chaining](#method-chaining).
 
@@ -125,6 +125,18 @@ If *value* is not specified, returns the value of the property.
 
 ```javascript
 a(); // Returns 5
+```
+
+<a name="getter-setter" href="#getter-setter">#</a> <i>reactiveProperty</i>.<b>default</b>()
+
+Returns the *defaultValue* specified in the [constructor](#constructor). If, *defaultValue* was not specified in the constructor, then the **default** function is not defined.
+
+The expected usage pattern is to always check if **default** is defined before invoking it, like this.
+
+```javascript
+if(a.default){
+  console.log(a.default());
+}
 ```
 
 ### Method Chaining

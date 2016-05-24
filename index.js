@@ -100,6 +100,14 @@
       listeners = [];
     };
 
+    // Expose the default value
+    if(value){
+      var defaultValue = value;
+      reactiveProperty.default = function (){
+        return defaultValue;
+      };
+    }
+
     return reactiveProperty;
-  }
+  };
 }));

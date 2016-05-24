@@ -49,6 +49,24 @@ describe("ReactiveProperty", function() {
       assert.equal(my.b(), 100);
 
     });
+    
+    it("Should not expose default if no default value.", function (){
+      var a = ReactiveProperty();
+      var hasDefault = a.default ? true : false;
+      assert(!hasDefault);
+      assert.equal(typeof a.default, "undefined");
+    });
+
+    it("Should store and expose default value.", function (){
+      var a = ReactiveProperty(5);
+      var hasDefault = a.default ? true : false;
+      assert(hasDefault);
+      assert.equal(a.default(), 5); 
+
+      a(500);
+      assert.equal(a(), 500); 
+      assert.equal(a.default(), 5); 
+    });
 
   });
 
