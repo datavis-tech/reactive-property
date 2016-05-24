@@ -77,13 +77,13 @@ var ReactiveProperty = require("reactive-property");
 You can also require the script in your HTML like this.
 
 ```html
-<script src="//datavis-tech.github.io/reactive-property/reactive-property-v0.9.0.js"></script>
+<script src="//datavis-tech.github.io/reactive-property/reactive-property-v1.0.0.js"></script>
 ```
 
 Or use the minified version.
 
 ```html
-<script src="//datavis-tech.github.io/reactive-property/reactive-property-v0.9.0.min.js"></script>
+<script src="//datavis-tech.github.io/reactive-property/reactive-property-v1.0.0.min.js"></script>
 ```
 
 [Try reactive-property in your browser.](https://tonicdev.com/573098b1f32f57120089aef5/573098b1f32f57120089aef6)
